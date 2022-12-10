@@ -35,7 +35,7 @@
                         </li>
                         @auth
                         <li>
-                            <a class="nav-link" href="{{ route('products.create') }}" style="font-weight: bold">{{ __('Add Product') }}</a>
+                            <a class="nav-link" href="{{ route('products.create') }}" style="font-weight: bold">{{ __('Add new product') }}</a>
                         </li>
                         @endauth
                     </ul>

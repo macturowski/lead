@@ -14,7 +14,19 @@
                         <img class="card-img-top" src="{{ asset('images') }}/{{ $product->image }}" alt="{{ $product->name }}">
                     </div>
                     <div class="col-md-6">
+                        <h5>{{ __('Description') }}</h5>
                         {{ $product->description }}
+                        <div class="mb-3 mt-3">
+                        <strong>{{ __('Product options:') }}</strong>
+                        @if(count($product->prices))
+                        
+                            @foreach ($product->prices as $price)
+                            <div><strong>{{ $price->name }}:</strong> {{ $price->price }} PLN </div> 
+                            @endforeach
+                        @else
+                            {{ __('This product has no prices') }}
+                        @endif
+                        </div>
                     </div>
                     <div class="col-md-2 mb-3 mt-3">
                         <a href="{{ url()->previous() }}" class="btn btn-secondary">{{ __('Back') }}</a>

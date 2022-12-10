@@ -23,16 +23,18 @@
             <img class="card-img-top" src="{{ asset('images') }}/{{ $product->image }}" alt="{{ $product->name }}">
             <div class="card-body">
                 <h5 class="card-title">{{ $product->name }}</h5>
-                <p class="card-text">{{ $product->description }}</p>
-
-                @if($product->prices)
+                <p class="card-text">{{ $product->description }}</p> 
                 <strong>{{ __('Product options:') }}</strong>
                 <div class="mb-3 mt-3">
+                @if(count($product->prices))
+                
                     @foreach ($product->prices as $price)
                     <div><strong>{{ $price->name }}:</strong> {{ $price->price }} PLN </div> 
                     @endforeach
-                </div>
+                @else
+                    {{ __('This product has no prices') }}
                 @endif
+                </div>
                 <a href="{{ route('products.show', $product) }}" class="btn btn-secondary">{{ __('View') }}</a>
                 @auth
                 <a href="{{ route('products.edit', $product) }}" class="btn btn-primary">{{ __('Edit') }}</a>

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('home');
 });
 
 Route::middleware('auth')->group(function () {
@@ -37,6 +37,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/prices/{price}', [PriceController::class, 'update'])->name('prices.update');
     Route::get('/prices/create/{product}', [PriceController::class, 'create'])->name('prices.create');
     Route::post('/prices', [PriceController::class, 'store'])->name('prices.store');
+    Route::fallback(function () {
+        return redirect('/');
+    });
 
 
 

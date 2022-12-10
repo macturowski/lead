@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Price;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\File;
@@ -133,6 +134,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         File::delete('images/' . $product->image);
+        Price::where('product_id', $product->id)->delete();
         $product->delete();
         return redirect()->route('products.index')->with('message', trans('messages.success_delete'));
     }
